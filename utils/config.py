@@ -8,6 +8,8 @@ sauce = SauceClient(USERNAME, ACCESS_KEY)
 USER = "testujpl@o2.pl"
 PASSWORD = "paluch88"
 
+CHANGE_PASSWORD_USER = "testujpl@go2.pl"
+
 # browsers = [{"platform": "Windows 8.1",
 #              "browserName": "internet explorer",
 #              "version": "8"},
