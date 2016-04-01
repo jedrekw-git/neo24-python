@@ -62,12 +62,12 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(profile_page._invoice_postal_code_value, profile_page.get_value_invoice_postal_code())
         Assert.equal(profile_page._invoice_city_value, profile_page.get_value_invoice_city())
 
-    def test_change_password_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        _saved_password = get_password("change_pass1.txt")
-        login_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
-        profile_page = home_page.header.open_my_profile_page()
-        profile_page.change_password()
+    # def test_change_password_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_home_page()
+    #     _saved_password = get_password("change_pass1.txt")
+    #     login_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
+    #     profile_page = home_page.header.open_my_profile_page()
+    #     profile_page.change_password()
 
     def test_sort_by_price_ascending_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -97,14 +97,14 @@ class SmokeTest(unittest.TestCase):
         Assert.greater(TV_page.text_price_first_product(), TV_page._filter_price_first_value)
         Assert.greater(TV_page.text_price_first_product(), TV_page._filter_price_second_value)
 
-    def test_filter_producer_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.filter_producer()
-        sleep(2)
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-
-        Assert.contains(TV_page._producer_text, TV_page.text_name_first_product())
+    # def test_filter_producer_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_home_page()
+    #     TV_page = home_page.header.open_TV_page()
+    #     TV_page.filter_producer()
+    #     sleep(2)
+    #     WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
+    #
+    #     Assert.contains(TV_page._producer_text, TV_page.text_name_first_product())
 
 # NIE DZIAŁA CHECKBOX
 
@@ -230,7 +230,7 @@ class SmokeTest(unittest.TestCase):
             # fp.set_preference("browser.startup.homepage", "about:blank")
             # fp.set_preference("startup.homepage_welcome_url", "about:blank")
             # fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
-            # fp.set_preference("xpinstall.signatures.required", "false")
+            # fp.set_preference(" xpinstall.signatures.required", "false")
             # fp.set_preference("toolkit.telemetry.reportingpolicy.firstRun", "false")
             self.driver = webdriver.Firefox()
             self.driver.maximize_window()
