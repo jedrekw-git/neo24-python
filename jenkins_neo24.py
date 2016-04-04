@@ -68,7 +68,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_password_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        _saved_password = get_password("change_pass1.txt")
+        _saved_password = get_password("change_pass2.txt")
         login_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
         profile_page = home_page.header.open_my_profile_page()
         profile_page.change_password()

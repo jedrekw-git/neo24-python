@@ -31,6 +31,7 @@ class RegisterUserPage(BasePage):
     _accept2_checkbox = (By.XPATH, "//div[6]/label")
     _accept3_checkbox = (By.XPATH, "//div[2]/span/strong")
     _register_account_submit_button = (By.XPATH, "//span/input")
+    _close_privacy_policy_bar_button = (By.LINK_TEXT, "zamknij")
 
     def __init__(self, driver):
         super(RegisterUserPage, self).__init__(driver, self._title)
@@ -45,6 +46,7 @@ class RegisterUserPage(BasePage):
         self.clear_field_and_send_keys(self._password_value, self._password1_field)
         self.clear_field_and_send_keys(self._password_value, self._password2_field)
         self.click(self._accept1_checkbox)
+        self.click(self._close_privacy_policy_bar_button)
         self.click(self._accept2_checkbox)
         self.click(self._accept3_checkbox)
         self.click(self._register_account_submit_button)

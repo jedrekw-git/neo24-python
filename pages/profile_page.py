@@ -99,7 +99,7 @@ class ProfilePage(BasePage):
 
     def change_password(self):
         self.click(self._change_password_menu)
-        change_password_value('change_pass1.txt')
-        self.clear_field_and_send_keys(get_password('change_pass1.txt'), self._change_password_new_field)
-        self.clear_field_and_send_keys(get_password('change_pass1.txt'), self._change_password_new2_field)
+        change_password_value('change_pass2.txt')
+        self.clear_field_and_send_keys(get_password('change_pass2.txt'), self._change_password_new_field)
+        self.clear_field_and_send_keys(get_password('change_pass2.txt'), self._change_password_new2_field)
         self.click(self._change_password_submit)
