@@ -29,25 +29,25 @@ run_locally = True
 class SmokeTest(unittest.TestCase):
     _internal_non_grouped_domain_text = 1
 
-    def test_register_user_should_succeed(self):
-
-        home_page = HomePage(self.driver).open_home_page()
-        register_user_page = home_page.header.open_register_user_page()
-        profile_page = register_user_page.register_user()
-        sleep(10)
-
-        Assert.equal(register_user_page._name_value, profile_page.get_value_name())
-        Assert.equal(register_user_page._surname_value, profile_page.get_value_surname())
-        Assert.equal(register_user_page._company_name_value, profile_page.get_value_company_name())
-        Assert.equal(register_user_page._NIP_value, profile_page.get_value_NIP())
-        Assert.equal(register_user_page._phone_value, profile_page.get_value_phone())
-
-    def test_change_password_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        _saved_password = get_password("change_pass2.txt")
-        login_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
-        profile_page = home_page.header.open_my_profile_page()
-        profile_page.change_password()
+    # def test_register_user_should_succeed(self):
+    #
+    #     home_page = HomePage(self.driver).open_home_page()
+    #     register_user_page = home_page.header.open_register_user_page()
+    #     profile_page = register_user_page.register_user()
+    #     sleep(10)
+    #
+    #     Assert.equal(register_user_page._name_value, profile_page.get_value_name())
+    #     Assert.equal(register_user_page._surname_value, profile_page.get_value_surname())
+    #     Assert.equal(register_user_page._company_name_value, profile_page.get_value_company_name())
+    #     Assert.equal(register_user_page._NIP_value, profile_page.get_value_NIP())
+    #     Assert.equal(register_user_page._phone_value, profile_page.get_value_phone())
+    #
+    # def test_change_password_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_home_page()
+    #     _saved_password = get_password("change_pass2.txt")
+    #     login_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
+    #     profile_page = home_page.header.open_my_profile_page()
+    #     profile_page.change_password()
 
     def test_add_to_basket_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
