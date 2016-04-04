@@ -33,7 +33,7 @@ class CategoryPage(BasePage):
     _filter_price_first_value = randint(1000, 2500)
     _filter_price_second_field = (By.NAME, "right_slider_545_1")
     _filter_price_second_value = randint(2501, 5000)
-    _filter_submit = (By.XPATH, "//div[16]/a")
+    _filter_submit = (By.XPATH, "//div[15]/a")
     _processing_info = (By.XPATH, "/html/body/div[1]/div[3]/div")
     _filter_producer_menu = (By.XPATH, "//div[2]/h5/span[3]")
     _filter_producer_random_producer_index = randint(1, 14)
@@ -129,7 +129,8 @@ class CategoryPage(BasePage):
         # self.click(self._filter_TV_screen_size_to_dropdown)
         self.click(self._filter_TV_screen_size_to_option)
         self._screen_size_to_text = self.get_text(self._filter_TV_screen_size_to_dropdown)
-        self.click(self._filter_submit)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._filter_submit))
+        # self.click(self._filter_submit)
 
     def text_screen_size_first_product(self):
         return self.get_text(self._first_product_screen_size_field)

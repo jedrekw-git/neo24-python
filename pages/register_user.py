@@ -49,6 +49,7 @@ class RegisterUserPage(BasePage):
         self.click(self._accept1_checkbox)
         self.click(self._accept2_checkbox)
         self.click(self._accept3_checkbox)
-        self.click(self._register_account_submit_button)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._register_account_submit_button))
+        # self.click(self._register_account_submit_button)
         return ProfilePage(self.get_driver())
 

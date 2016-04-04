@@ -42,32 +42,6 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(register_user_page._NIP_value, profile_page.get_value_NIP())
         Assert.equal(register_user_page._phone_value, profile_page.get_value_phone())
 
-    def test_change_profile_data_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        login_page = home_page.header.login(USER, PASSWORD)
-        profile_page = home_page.header.open_my_profile_page()
-        profile_page.change_user_data()
-
-        Assert.equal(profile_page._name_value, profile_page.get_value_name())
-        Assert.equal(profile_page._surname_value, profile_page.get_value_surname())
-        Assert.equal(profile_page._company_name_value, profile_page.get_value_company_name())
-        Assert.equal(profile_page._NIP_value, profile_page.get_value_NIP())
-        Assert.equal(profile_page._phone_value, profile_page.get_value_phone())
-        Assert.equal(profile_page._invoice_name_value, profile_page.get_value_invoice_name())
-        Assert.equal(profile_page._invoice_surname_value, profile_page.get_value_invoice_surname())
-        Assert.equal(profile_page._invoice_street_value, profile_page.get_value_invoice_street())
-        Assert.equal(profile_page._invoice_house_nr_value, profile_page.get_value_invoice_house_nr())
-        Assert.equal(profile_page._invoice_apartment_nr_value, profile_page.get_value_invoice_apartment_nr())
-        Assert.equal(profile_page._invoice_postal_code_value, profile_page.get_value_invoice_postal_code())
-        Assert.equal(profile_page._invoice_city_value, profile_page.get_value_invoice_city())
-
-    def test_change_password_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        _saved_password = get_password("change_pass2.txt")
-        login_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
-        profile_page = home_page.header.open_my_profile_page()
-        profile_page.change_password()
-
     def test_filter_price_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         TV_page = home_page.header.open_TV_page()
@@ -87,46 +61,6 @@ class SmokeTest(unittest.TestCase):
 
         Assert.greater(TV_page.text_screen_size_first_product(), TV_page._screen_size_from_text)
         Assert.greater(TV_page._screen_size_to_text, TV_page.text_screen_size_first_product())
-
-    def test_compare_products_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.text_name_and_price_four_first_products()
-        TV_page.get_first_product_to_compare()
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-        TV_page.compare_continue_shopping()
-        TV_page.get_second_product_to_compare()
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-        TV_page.compare_continue_shopping()
-        TV_page.get_third_product_to_compare()
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-        TV_page.compare_continue_shopping()
-        TV_page.get_fourth_product_to_compare()
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-        TV_page.compare_submit()
-        TV_page.text_compared_products_name_and_price()
-
-        Assert.equal(TV_page.first_product_name, TV_page.compare_first_product_name)
-        Assert.equal(TV_page.second_product_name, TV_page.compare_second_product_name)
-        Assert.equal(TV_page.third_product_name, TV_page.compare_third_product_name)
-        Assert.equal(TV_page.fourth_product_name, TV_page.compare_fourth_product_name)
-        Assert.equal(TV_page.first_product_price, TV_page.compare_first_product_price)
-        Assert.equal(TV_page.second_product_price, TV_page.compare_second_product_price)
-        Assert.equal(TV_page.third_product_price, TV_page.compare_third_product_price)
-        Assert.equal(TV_page.fourth_product_price, TV_page.compare_fourth_product_price)
-
-    def test_check_product_page_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.get_first_product_values()
-        TV_page.open_first_product()
-        TV_page.get_first_product_values_details()
-
-        Assert.equal(TV_page.first_product_name, TV_page.details_first_product_name)
-        Assert.equal(TV_page.first_product_price, TV_page.details_first_product_price)
-        Assert.contains(TV_page.first_product_hdmi_number, TV_page.get_page_source())
-        Assert.contains(TV_page.first_product_screen_size, TV_page.get_page_source())
-        Assert.contains(TV_page.first_product_HD_standard, TV_page.get_page_source())
 
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()
