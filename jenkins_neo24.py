@@ -181,7 +181,7 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(TV_page.third_product_price, TV_page.compare_third_product_price)
         Assert.equal(TV_page.fourth_product_price, TV_page.compare_fourth_product_price)
 
-    def test_check_product_psge_should_succeed(self):
+    def test_check_product_page_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         TV_page = home_page.header.open_TV_page()
         TV_page.get_first_product_values()
@@ -190,14 +190,15 @@ class SmokeTest(unittest.TestCase):
 
         Assert.equal(TV_page.first_product_name, TV_page.details_first_product_name)
         Assert.equal(TV_page.first_product_price, TV_page.details_first_product_price)
-        Assert.equal(TV_page.first_product_hdmi_number, TV_page.details_first_product_hdmi_number)
-        Assert.equal(TV_page.first_product_screen_size, TV_page.details_first_product_screen_size)
-        Assert.equal(TV_page.first_product_HD_standard, TV_page.details_first_product_HD_standard)
+        Assert.contains(TV_page.first_product_hdmi_number, TV_page.get_page_source())
+        Assert.contains(TV_page.first_product_screen_size, TV_page.get_page_source())
+        Assert.contains(TV_page.first_product_HD_standard, TV_page.get_page_source())
 
     def test_add_to_basket_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         TV_page = home_page.header.open_TV_page()
         TV_page.get_first_product_name_and_price()
+        sleep(3)
         TV_page.add_first_product_to_basket()
         WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
         TV_page.product_added_to_basket_text()
