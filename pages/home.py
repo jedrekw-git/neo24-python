@@ -13,7 +13,7 @@ from pages.profile_page import ProfilePage
 class HomePage(BasePage):
     _title = "neo24.pl"
     _url = "http://www.neo24.pl/"
-    _close_privacy_policy_bar_button = (By.XPATH, "//body/div[2]/div[2]/a[2]")
+    _close_privacy_policy_bar_button = (By.LINK_TEXT, "zamknij")
 
     def __init__(self, driver):
         super(HomePage, self).__init__(driver, self._title, self._url)
