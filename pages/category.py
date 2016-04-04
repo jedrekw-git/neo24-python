@@ -33,7 +33,7 @@ class CategoryPage(BasePage):
     _filter_price_first_value = randint(1000, 2500)
     _filter_price_second_field = (By.NAME, "right_slider_545_1")
     _filter_price_second_value = randint(2501, 5000)
-    _filter_submit = (By.XPATH, "//div[15]/a")
+    _filter_submit = (By.XPATH, "//div[16]/a")
     _processing_info = (By.XPATH, "/html/body/div[1]/div[3]/div")
     _filter_producer_menu = (By.XPATH, "//div[2]/h5/span[3]")
     _filter_producer_random_producer_index = randint(1, 14)
@@ -65,8 +65,8 @@ class CategoryPage(BasePage):
     _compare_fourth_product_price_field = (By.XPATH, "//td[2]/div[2]/form/div/div/p[2]")
     _details_first_product_name_field = (By.XPATH, "//header/h1")
     _details_first_product_price_field = (By.XPATH, "//section[3]/div/div")
-    _details_first_product_screen_size_field = (By.XPATH, "//div[4]/div")
-    _details_first_product_hdmi_field = (By.XPATH, "//div[11]/div")
+    _details_first_product_screen_size_field = (By.XPATH, "//article/div[2]/div")
+    _details_first_product_hdmi_field = (By.XPATH, "//div[10]/div")
     _details_first_product_HD_standard_field = (By.XPATH, '//div[5]/div')
     _details_first_product_hz_field = (By.XPATH, "//div[7]/div")
     _first_product_add_to_basket_button = (By.XPATH, "//div[2]/div[2]/div/div/div/a")
@@ -118,10 +118,13 @@ class CategoryPage(BasePage):
         return self.get_text(self._second_product_name_field)
 
     def filter_TV_screen_size(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._filter_TV_screen_size_menu)
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._filter_TV_screen_size_from_dropdown)
         self._screen_size_from_text = self.get_text(self._filter_TV_screen_size_from_option)
         self.click(self._filter_TV_screen_size_from_option)
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._filter_TV_screen_size_to_dropdown)
         self.click(self._filter_TV_screen_size_to_option)
         self._screen_size_to_text = self.get_text(self._filter_TV_screen_size_to_dropdown)
@@ -131,6 +134,7 @@ class CategoryPage(BasePage):
         return self.get_text(self._first_product_screen_size_field)
 
     def filter_TV_hz(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._filter_TV_hz_menu)
         self.click(self._filter_TV_hz_from_dropdown)
         self._hz_from_text = self.get_text(self._filter_TV_hz_from_option)
@@ -141,6 +145,7 @@ class CategoryPage(BasePage):
         self.click(self._filter_submit)
 
     def open_first_product(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._first_product_name_field)
 
     def text_hz_first_product(self):
@@ -160,18 +165,22 @@ class CategoryPage(BasePage):
         self.product_name_table.append(self.text_name_second_product())
 
     def get_first_product_to_compare(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._compare_first_product_checkbox)
 
     def compare_continue_shopping(self):
         self.click(self._compare_continue_shopping_button)
 
     def get_second_product_to_compare(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._compare_second_product_checkbox)
 
     def get_third_product_to_compare(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._compare_third_product_checkbox)
 
     def get_fourth_product_to_compare(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._compare_fourth_product_checkbox)
 
     def compare_submit(self):
@@ -208,15 +217,16 @@ class CategoryPage(BasePage):
     def get_first_product_values_details(self):
         self.details_first_product_name = self.get_text(self._details_first_product_name_field)
         self.details_first_product_price = self.get_text(self._details_first_product_price_field)[:-3]
-        self.details_first_product_hdmi_number = self.get_text(self._details_first_product_hdmi_field)
-        self.details_first_product_screen_size = self.get_text(self._details_first_product_screen_size_field)
-        self.details_first_product_HD_standard = self.get_text(self._details_first_product_HD_standard_field)
+        # self.details_first_product_hdmi_number = self.get_text(self._details_first_product_hdmi_field)
+        # self.details_first_product_screen_size = self.get_text(self._details_first_product_screen_size_field)
+        # self.details_first_product_HD_standard = self.get_text(self._details_first_product_HD_standard_field)
 
     def get_first_product_name_and_price(self):
         self.first_product_name = self.get_text(self._first_product_name_field)
         self.first_product_price = self.get_text(self._first_product_price_field)[:-3]
 
     def add_first_product_to_basket(self):
+        self.get_driver().execute_script("window.scrollTo(0, 0);")
         self.click(self._first_product_add_to_basket_button)
 
     def product_added_to_basket_text(self):

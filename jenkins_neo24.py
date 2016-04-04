@@ -16,6 +16,7 @@ from selenium.common.exceptions import TimeoutException
 from time import gmtime, strftime
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import re
+from change_password import *
 
 SCREEN_DUMP_LOCATION = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'screendumps'
