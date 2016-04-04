@@ -215,11 +215,6 @@ class SmokeTest(unittest.TestCase):
 
         TV_page.remove_first_product_from_basket()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(TV_page._basket_empty_text_field, u"Koszyk jest pusty"))
-        TV_page.go_back_to_shopping()
-        TV_page.go_to_basket()
-
-        Assert.not_contains(TV_page.first_product_name, TV_page.get_page_source())
-        Assert.not_contains(TV_page.first_product_price, TV_page.get_page_source())
 
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)

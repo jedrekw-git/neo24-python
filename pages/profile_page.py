@@ -98,7 +98,8 @@ class ProfilePage(BasePage):
         return self.get_value(self._invoice_city_field)
 
     def change_password(self):
-        self.click(self._change_password_menu)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._change_password_menu))
+        # self.click(self._change_password_menu)
         change_password_value('change_pass2.txt')
         self.clear_field_and_send_keys(get_password('change_pass2.txt'), self._change_password_new_field)
         self.clear_field_and_send_keys(get_password('change_pass2.txt'), self._change_password_new2_field)
