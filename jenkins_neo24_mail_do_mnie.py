@@ -42,26 +42,6 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(register_user_page._NIP_value, profile_page.get_value_NIP())
         Assert.equal(register_user_page._phone_value, profile_page.get_value_phone())
 
-    def test_filter_price_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.filter_price()
-        sleep(2)
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-
-        Assert.greater(TV_page.text_price_first_product(), TV_page._filter_price_first_value)
-        Assert.greater(TV_page.text_price_first_product(), TV_page._filter_price_second_value)
-
-    def test_filter_TV_screen_size_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.filter_TV_screen_size()
-        sleep(2)
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-
-        Assert.greater(TV_page.text_screen_size_first_product(), TV_page._screen_size_from_text)
-        Assert.greater(TV_page._screen_size_to_text, TV_page.text_screen_size_first_product())
-
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()
         self._send_email()
