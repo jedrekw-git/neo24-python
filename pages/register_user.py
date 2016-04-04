@@ -37,7 +37,7 @@ class RegisterUserPage(BasePage):
         super(RegisterUserPage, self).__init__(driver, self._title)
 
     def register_user(self):
-        self.click(self._close_privacy_policy_bar_button)
+        # self.click(self._close_privacy_policy_bar_button)
         self.clear_field_and_send_keys(self._name_value, self._name_field)
         self.clear_field_and_send_keys(self._surname_value, self._surname_field)
         self.clear_field_and_send_keys(self._company_name_value, self._company_name_field)

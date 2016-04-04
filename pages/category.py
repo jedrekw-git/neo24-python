@@ -226,8 +226,8 @@ class CategoryPage(BasePage):
         self.first_product_price = self.get_text(self._first_product_price_field)[:-3]
 
     def add_first_product_to_basket(self):
-        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._first_product_add_to_basket_button))
-        # self.click(self._first_product_add_to_basket_button)
+        # self.get_driver().execute_script("arguments[0].click();", self.find_element(self._first_product_add_to_basket_button))
+        self.click(self._first_product_add_to_basket_button)
 
     def product_added_to_basket_text(self):
         self.product_added_to_basket_confirmation = self.get_text(self._product_added_to_basket_field)

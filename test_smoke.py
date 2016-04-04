@@ -214,8 +214,6 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(TV_page.product_in_basket_summary_price, TV_page.first_product_price)
 
         TV_page.remove_first_product_from_basket()
-        Assert.contains(u"Usun\u0105\u0142e\u015b w\u0142a\u015bnie", TV_page.get_page_source())
-        Assert.contains(TV_page.first_product_name+u"</strong> z Twojego koszyka!</p><p>Kliknij aby cofn\u0105\u0107 zmian\u0119.", TV_page.get_page_source())
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(TV_page._basket_empty_text_field, u"Koszyk jest pusty"))
         TV_page.go_back_to_shopping()
         TV_page.go_to_basket()
