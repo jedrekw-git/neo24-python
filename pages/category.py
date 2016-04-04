@@ -103,7 +103,8 @@ class CategoryPage(BasePage):
         self.click(self. _filter_price_menu)
         self.clear_field_and_send_keys(self._filter_price_first_value, self._filter_price_first_field)
         self.clear_field_and_send_keys(self._filter_price_second_value, self._filter_price_second_field)
-        self.click(self._filter_submit)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._filter_submit))
+        # self.click(self._filter_submit)
 
     def filter_producer(self):
         self.click(self._filter_producer_menu)
@@ -124,8 +125,8 @@ class CategoryPage(BasePage):
         self.click(self._filter_TV_screen_size_from_dropdown)
         self._screen_size_from_text = self.get_text(self._filter_TV_screen_size_from_option)
         self.click(self._filter_TV_screen_size_from_option)
-        self.get_driver().execute_script("window.scrollTo(0, 0);")
-        self.click(self._filter_TV_screen_size_to_dropdown)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._filter_TV_screen_size_to_dropdown))
+        # self.click(self._filter_TV_screen_size_to_dropdown)
         self.click(self._filter_TV_screen_size_to_option)
         self._screen_size_to_text = self.get_text(self._filter_TV_screen_size_to_dropdown)
         self.click(self._filter_submit)
@@ -145,8 +146,8 @@ class CategoryPage(BasePage):
         self.click(self._filter_submit)
 
     def open_first_product(self):
-        self.get_driver().execute_script("window.scrollTo(0, 0);")
-        self.click(self._first_product_name_field)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._first_product_name_field))
+        # self.click(self._first_product_name_field)
 
     def text_hz_first_product(self):
         return self.get_text(self._details_first_product_hz_field)
@@ -165,23 +166,23 @@ class CategoryPage(BasePage):
         self.product_name_table.append(self.text_name_second_product())
 
     def get_first_product_to_compare(self):
-        self.get_driver().execute_script("window.scrollTo(0, 0);")
-        self.click(self._compare_first_product_checkbox)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._compare_first_product_checkbox))
+        # self.click(self._compare_first_product_checkbox)
 
     def compare_continue_shopping(self):
         self.click(self._compare_continue_shopping_button)
 
     def get_second_product_to_compare(self):
-        self.get_driver().execute_script("window.scrollTo(0, 0);")
-        self.click(self._compare_second_product_checkbox)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._compare_second_product_checkbox))
+        # self.click(self._compare_second_product_checkbox)
 
     def get_third_product_to_compare(self):
-        self.get_driver().execute_script("window.scrollTo(0, 0);")
-        self.click(self._compare_third_product_checkbox)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._compare_third_product_checkbox))
+        # self.click(self._compare_third_product_checkbox)
 
     def get_fourth_product_to_compare(self):
-        self.get_driver().execute_script("window.scrollTo(0, 0);")
-        self.click(self._compare_fourth_product_checkbox)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._compare_fourth_product_checkbox))
+        # self.click(self._compare_fourth_product_checkbox)
 
     def compare_submit(self):
         self.click(self._compare_submit_button)

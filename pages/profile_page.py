@@ -58,8 +58,8 @@ class ProfilePage(BasePage):
         self.clear_field_and_send_keys(self._invoice_apartment_nr_value, self._invoice_apartment_nr_field)
         self.clear_field_and_send_keys(self._invoice_postal_code_value, self._invoice_postal_code_field)
         self.clear_field_and_send_keys(self._invoice_city_value, self._invoice_city_field)
-        self.get_driver().execute_script("window.scrollTo(0, 0);")
-        self.click(self._my_data_save_button)
+        self.get_driver().execute_script("arguments[0].click();", self.find_element(self._my_data_save_button))
+        # self.click(self._my_data_save_button)
 
     def get_value_name(self):
         return self.get_value(self._name_field)

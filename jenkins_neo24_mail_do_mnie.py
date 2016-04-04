@@ -42,11 +42,6 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(register_user_page._NIP_value, profile_page.get_value_NIP())
         Assert.equal(register_user_page._phone_value, profile_page.get_value_phone())
 
-    def test_login_and_logout_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        profile_page = home_page.header.login(USER, PASSWORD)
-        home_page.header.logout()
-
     def test_change_profile_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         login_page = home_page.header.login(USER, PASSWORD)
@@ -73,24 +68,6 @@ class SmokeTest(unittest.TestCase):
         profile_page = home_page.header.open_my_profile_page()
         profile_page.change_password()
 
-    def test_sort_by_price_ascending_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.sort_by_price_ascending()
-        sleep(2)
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-
-        Assert.less(TV_page.text_price_first_product(), TV_page.text_price_second_product())
-
-    def test_sort_by_price_descending_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.sort_by_price_descending()
-        sleep(2)
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-
-        Assert.greater(TV_page.text_price_second_product(), TV_page.text_price_first_product())
-
     def test_filter_price_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         TV_page = home_page.header.open_TV_page()
@@ -101,17 +78,6 @@ class SmokeTest(unittest.TestCase):
         Assert.greater(TV_page.text_price_first_product(), TV_page._filter_price_first_value)
         Assert.greater(TV_page.text_price_first_product(), TV_page._filter_price_second_value)
 
-    # def test_filter_producer_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     TV_page = home_page.header.open_TV_page()
-    #     TV_page.filter_producer()
-    #     sleep(2)
-    #     WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-    #
-    #     Assert.contains(TV_page._producer_text, TV_page.text_name_first_product())
-
-# NIE DZIAŁA CHECKBOX
-
     def test_filter_TV_screen_size_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         TV_page = home_page.header.open_TV_page()
@@ -121,40 +87,6 @@ class SmokeTest(unittest.TestCase):
 
         Assert.greater(TV_page.text_screen_size_first_product(), TV_page._screen_size_from_text)
         Assert.greater(TV_page._screen_size_to_text, TV_page.text_screen_size_first_product())
-
-    # def test_filter_TV_hz_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     TV_page = home_page.header.open_TV_page()
-    #     TV_page.filter_TV_hz()
-    #     sleep(2)
-    #     WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-    #
-    #     TV_page.open_first_product()
-    #
-    #     Assert.greater_equal(TV_page._hz_from_text, TV_page.text_hz_first_product())
-    #     Assert.greater_equal(TV_page._hz_to_text, TV_page.text_hz_first_product())
-
-#W RÓŻNYM MIEJSCU JEST HZ NA STRONIE PRODUKTU
-
-    def test_sort_alphabetically_ascending_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.sort_alphabetically_ascending()
-        sleep(2)
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-        TV_page.get_product_name_table()
-
-        Assert.is_sorted_ascending(TV_page.product_name_table)
-
-    def test_sort_alphabetically_descending_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.sort_alphabetically_descending()
-        sleep(2)
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-        TV_page.get_product_name_table()
-
-        Assert.is_sorted_descending(TV_page.product_name_table)
 
     def test_compare_products_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -195,30 +127,6 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(TV_page.first_product_hdmi_number, TV_page.get_page_source())
         Assert.contains(TV_page.first_product_screen_size, TV_page.get_page_source())
         Assert.contains(TV_page.first_product_HD_standard, TV_page.get_page_source())
-
-    def test_add_to_basket_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        TV_page = home_page.header.open_TV_page()
-        TV_page.get_first_product_name_and_price()
-        sleep(3)
-        TV_page.add_first_product_to_basket()
-        WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
-        TV_page.product_added_to_basket_text()
-
-        Assert.equal(TV_page.product_added_to_basket_confirmation, u"dodany do koszyka")
-        Assert.equal(TV_page.product_added_to_basket_product_name, TV_page.first_product_name)
-        Assert.equal(TV_page.product_added_to_basket_price, TV_page.first_product_price)
-        Assert.equal(TV_page.product_added_to_basket_summary_price, TV_page.first_product_price)
-
-        TV_page.go_to_basket()
-        TV_page.product_in_basket_text()
-
-        Assert.equal(TV_page.product_in_basket_product_name, TV_page.first_product_name)
-        Assert.equal(TV_page.product_in_basket_price, TV_page.first_product_price)
-        Assert.equal(TV_page.product_in_basket_summary_price, TV_page.first_product_price)
-
-        TV_page.remove_first_product_from_basket()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(TV_page._basket_empty_text_field, u"Koszyk jest pusty"))
 
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()
