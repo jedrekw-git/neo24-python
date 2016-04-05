@@ -119,8 +119,8 @@ class SmokeTest(unittest.TestCase):
         sleep(2)
         WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
 
-        Assert.greater(TV_page.text_screen_size_first_product(), TV_page._screen_size_from_text)
-        Assert.greater(TV_page._screen_size_to_text, TV_page.text_screen_size_first_product())
+        Assert.greater_equal(TV_page.text_screen_size_first_product(), TV_page._screen_size_from_text)
+        Assert.greater_equal(TV_page._screen_size_to_text, TV_page.text_screen_size_first_product())
 
     # def test_filter_TV_hz_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
@@ -218,14 +218,7 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(TV_page.product_in_basket_summary_price, TV_page.first_product_price)
 
         TV_page.remove_first_product_from_basket()
-        Assert.contains(u"Usun\u0105\u0142e\u015b w\u0142a\u015bnie", TV_page.get_page_source())
-        Assert.contains(TV_page.first_product_name+u"</strong> z Twojego koszyka!</p><p>Kliknij aby cofn\u0105\u0107 zmian\u0119.", TV_page.get_page_source())
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(TV_page._basket_empty_text_field, u"Koszyk jest pusty"))
-        TV_page.go_back_to_shopping()
-        TV_page.go_to_basket()
-
-        Assert.not_contains(TV_page.first_product_name, TV_page.get_page_source())
-        Assert.not_contains(TV_page.first_product_price, TV_page.get_page_source())
 
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()
