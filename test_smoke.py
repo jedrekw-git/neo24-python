@@ -115,8 +115,8 @@ class SmokeTest(unittest.TestCase):
         sleep(2)
         WebDriverWait(self.driver, 30).until(EC.invisibility_of_element_located(TV_page._processing_info))
 
-        Assert.greater(TV_page.text_screen_size_first_product(), TV_page._screen_size_from_text)
-        Assert.greater(TV_page._screen_size_to_text, TV_page.text_screen_size_first_product())
+        Assert.greater_equal(TV_page.text_screen_size_first_product(), TV_page._screen_size_from_text)
+        Assert.greater_equal(TV_page._screen_size_to_text, TV_page.text_screen_size_first_product())
 
     # def test_filter_TV_hz_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
