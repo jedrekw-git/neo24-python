@@ -229,9 +229,14 @@ class SmokeTest(unittest.TestCase):
 
     def setUp(self):
         self.timeout = 30
-        if run_locally:
-            binary = FirefoxBinary('/__stare/firefox/firefox')
-            self.driver = webdriver.Firefox(firefox_binary=binary)
+            fp = webdriver.FirefoxProfile()
+            fp.set_preference("browser.startup.homepage", "about:blank")
+            fp.set_preference("startup.homepage_welcome_url", "about:blank")
+            fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
+            fp.set_preference(" xpinstall.signatures.required", "false")
+            fp.set_preference("toolkit.telemetry.reportingpolicy.firstRun", "false")
+            binary = FirefoxBinary('/__stare/firefox45/firefox')
+            self.driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
             self.driver.set_window_size(1024, 768)
             self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
