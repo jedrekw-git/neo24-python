@@ -229,6 +229,7 @@ class SmokeTest(unittest.TestCase):
 
     def setUp(self):
         self.timeout = 30
+        if run_locally:
             fp = webdriver.FirefoxProfile()
             fp.set_preference("browser.startup.homepage", "about:blank")
             fp.set_preference("startup.homepage_welcome_url", "about:blank")
