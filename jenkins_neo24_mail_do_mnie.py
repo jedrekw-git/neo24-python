@@ -295,13 +295,14 @@ class SmokeTest(unittest.TestCase):
     def _save_plot(self):
         import matplotlib.pyplot as plt
         filename = self._get_filename_for_plot() + ".png"
-        err = len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
+        err = len(self._resultForDoCleanups.errors)
+        fail = len(self._resultForDoCleanups.failures)
 
         # The slices will be ordered and plotted counter-clockwise.
-        labels = 'Errors', 'Passes'
-        sizes = [err, 13-err]
-        colors = ['red', 'gold']
-        explode = (0, 0.1)
+        labels = 'Errors', 'Failures', 'Passes'
+        sizes = [err, fail, 13-fail-err]
+        colors = ['red', 'gold', 'green']
+        explode = (0.1, 0.1, 0.1)
 
         plt.pie(sizes, explode=explode, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=90)
