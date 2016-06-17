@@ -338,7 +338,7 @@ class SmokeTest(unittest.TestCase):
         from mailer import Message
 
         message = Message(From="jedrzej.wojcieszczyk@testuj.pl",
-                          To=["jakub.pelka@neo24.pl", "zefiryn.tora@neonet.pl", "a.poplawski@neonet.pl", "info@testuj.pl"])
+                          To=["jakub.pelka@neo24.pl", "zefiryn.tora@neonet.pl", "a.poplawski@neonet.pl", "bledy@testuj.pl"])
         message.Subject = "Raport Jenkins Neo24 Testy Automatyczne"
         message.Html = """<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p>Cześć!<br>
            Oto wygenerowany automatycznie raport z testów Neo24.pl<br><br>
